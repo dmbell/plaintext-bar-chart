@@ -1,1 +1,1 @@
-Plain Bar Chart in Python
+Alphanumeric Bar Chart for Plaintext Files in Python
