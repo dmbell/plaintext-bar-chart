@@ -1,5 +1,5 @@
-import re, string; alphanum = re.compile('[\W_]+', re.UNICODE)
 from collections import OrderedDict
+import re, string; alphanum = re.compile('[\W_]+', re.UNICODE)
 
 def normalize_file(file):
 	list = []
@@ -16,6 +16,13 @@ def calc_freq(line, freqs):
 		else:
 			freqs[char] = 1
 
+def reorder_nums(freqs):
+	for i in range(10):
+		if str(i) in freqs:
+			v = freqs[str(i)]
+			del freqs[str(i)]
+			freqs[str(i)] = v
+
 lines = normalize_file('ptresume.txt')
 
 freqs = {}
@@ -25,7 +32,7 @@ for line in lines:
 
 freqs = OrderedDict(sorted(freqs.items()))
 
-print("Number of items in dict: " + str(len(freqs)))
+reorder_nums(freqs)
 
 for char, freq in freqs.items():
 	print(char + ":" + str(freq))
